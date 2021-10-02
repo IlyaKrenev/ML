@@ -1,0 +1,27 @@
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IlyaKrenev/WebPack.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "webpack"
+  ],
+  "author": "Krenev I.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IlyaKrenev/WebPack/issues"
+  },
+  "homepage": "https://github.com/IlyaKrenev/WebPack#readme",
+  "dependencies": {
+    "jshint": "^2.13.1"
+  }
+}

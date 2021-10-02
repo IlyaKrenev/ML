@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _post__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./post */ \"./src/post.js\");\n\r\n\r\nconst post = new _post__WEBPACK_IMPORTED_MODULE_0__[\"default\"]('WebPack post title');\r\n\r\nconsole.log(post.toString());\n\n//# sourceURL=webpack://webpack/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _post__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./post */ \"./src/post.js\");\n\r\n\r\nconst post = new _post__WEBPACK_IMPORTED_MODULE_0__[\"default\"]('WebPack post title!');\r\n\r\nconsole.log(post.toString());\n\n//# sourceURL=webpack://webpack/./src/index.js?");
 
 /***/ }),
 

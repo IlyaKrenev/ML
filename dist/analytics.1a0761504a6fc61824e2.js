@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("function createAnalytics(){\r\n    let counter = 0;\r\n    let isDestroyed = false;\r\n    const listener = () => counter++;\r\n\r\n    document.addEventListener('click', listener);\r\n    \r\n    return {\r\n        destroy(){\r\n            document.removeEventListener('click', listener);\r\n            isDestroyed = true;\r\n        },\r\n        getClicks(){\r\n            if (isDestroyed){\r\n                return 'Analytics is destroyed'\r\n            }\r\n            return counter\r\n        }\r\n    }\r\n}\r\n\r\nwindow.analytics = createAnalytics();\n\n//# sourceURL=webpack:///./analytics.js?");
+eval("function createAnalytics() {\n  var counter = 0;\n  var isDestroyed = false;\n\n  var listener = function listener() {\n    return counter++;\n  };\n\n  document.addEventListener('click', listener);\n  return {\n    destroy: function destroy() {\n      document.removeEventListener('click', listener);\n      isDestroyed = true;\n    },\n    getClicks: function getClicks() {\n      if (isDestroyed) {\n        return 'Analytics is destroyed';\n      }\n\n      return counter;\n    }\n  };\n}\n\nwindow.analytics = createAnalytics();\n\n//# sourceURL=webpack:///./analytics.js?");
 
 /***/ })
 

@@ -5,10 +5,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MCEP = require('mini-css-extract-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
+
+const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
 
 const optimization = () => {
     const config = {
@@ -30,7 +32,7 @@ const optimization = () => {
 const plugins = () => {
     const base = [
         new HtmlWebpackPlugin({
-            template: './index.html',
+            template: './index.pug',
             minify: {
                 collapseWhitespace: isProd,
             }
@@ -43,13 +45,12 @@ const plugins = () => {
             }]
         }),
         new MCEP({
-            filename: '[name].[contenthash].css'
+            filename: filename('css')
+        }),
+        new HtmlWebpackPugPlugin({
+            adjustIndent: true,
         }),
     ];
-
-    if (isProd){
-        base.push(new BundleAnalyzerPlugin());
-    }
 
     return base;
 }
@@ -59,10 +60,9 @@ module.exports = {
     mode: 'development',
     entry: {
         main: ['@babel/polyfill', './index.js'],
-        analytics: './analytics.js' 
     },
     output: {
-        filename: '[name].[contenthash].js',
+        filename: filename('js'),
         path: path.resolve(__dirname, 'dist'),
     },
     optimization: optimization(),
@@ -92,7 +92,26 @@ module.exports = {
                         ]
                     }
                 }
-            }
+            },
+            {
+                test: /\.pug$/,
+                loader: 'pug-loader',
+                options: {
+                    pretty: true
+                }
+            },
+            {
+                test: /\.s[ac]ss$/,
+                use: [MCEP.loader, 'css-loader', 'sass-loader'],
+            },
+            {
+                test: /\.(png|jpg|svg|gif)$/,
+                use: ['file-loader']
+              },
+              {
+                test: /\.(ttf|woff|woff2|eot)$/,
+                use: ['file-loader']
+              },
         ]
     }
 }
